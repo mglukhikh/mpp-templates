@@ -1,0 +1,74 @@
+group 'org.jetbrains.kotlin'
+version '0.1-SNAPSHOT'
+
+buildscript {
+    ext.kotlin_version = '1.2.70-dev-988'
+    repositories {
+        google()
+        mavenLocal()
+        jcenter()
+        maven { url 'https://dl.bintray.com/kotlin/kotlin-dev' }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.2.0-beta03'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+repositories {
+    google()
+    mavenLocal()
+    jcenter()
+    maven { url 'https://dl.bintray.com/kotlin/kotlin-dev' }
+}
+
+apply plugin: 'kotlin-multiplatform'
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "org.jetbrains.kotlin.mpp_app_android"
+        minSdkVersion 15
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib'
+}
+
+kotlin {
+    targets {
+        // For ARM, preset should be changed to presets.android_arm32 or presets.android_arm64
+        fromPreset(presets.android, 'android')
+        // For ARM, preset should be changed to presets.ios_arm32 or presets.ios_arm64
+        fromPreset(presets.ios_x64, 'ios')
+    }
+    sourceSets {
+        commonMain {
+            dependencies {
+                implementation 'org.jetbrains.kotlin:kotlin-stdlib-common'
+            }
+        }
+        iosMain {
+            dependencies {
+            }
+        }
+    }
+}

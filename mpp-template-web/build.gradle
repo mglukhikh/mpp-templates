@@ -1,0 +1,46 @@
+group 'org.jetbrains.kotlin'
+version '0.1-SNAPSHOT'
+
+buildscript {
+    ext.kotlin_version = '1.2.70-dev-988'
+    repositories {
+        mavenLocal()
+        jcenter()
+        maven { url 'https://dl.bintray.com/kotlin/kotlin-dev' }
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+repositories {
+    mavenLocal()
+    jcenter()
+    maven { url 'https://dl.bintray.com/kotlin/kotlin-dev' }
+}
+
+apply plugin: 'kotlin-multiplatform'
+
+kotlin {
+    targets {
+        fromPreset(presets.jvmWithJava, 'jvm')
+        fromPreset(presets.js, 'js')
+    }
+    sourceSets {
+        commonMain {
+            dependencies {
+                implementation 'org.jetbrains.kotlin:kotlin-stdlib-common'
+            }
+        }
+        jvmMain {
+            dependencies {
+                implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+            }
+        }
+        jsMain {
+            dependencies {
+                implementation 'org.jetbrains.kotlin:kotlin-stdlib-js'
+            }
+        }
+    }
+}

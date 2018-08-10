@@ -1,0 +1,5 @@
+rootProject.name = 'mpp-templates'
+include 'mpp-template-mobile'
+include 'mpp-template-web'
+include 'mpp-template-lib'
+
