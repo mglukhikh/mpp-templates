@@ -1,2 +1,4 @@
 *.iml
 .idea/
+gradlew
+gradlew.bat
