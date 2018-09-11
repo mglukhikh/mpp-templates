@@ -2,7 +2,7 @@ group 'org.jetbrains.kotlin'
 version '0.1-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '1.2.70-dev-988'
+    ext.kotlin_version = '1.3.0-dev-357'
     repositories {
         google()
         mavenLocal()
@@ -58,7 +58,7 @@ kotlin {
         // For ARM, preset should be changed to presets.android_arm32 or presets.android_arm64
         fromPreset(presets.android, 'android')
         // For ARM, preset should be changed to presets.ios_arm32 or presets.ios_arm64
-        fromPreset(presets.ios_x64, 'ios')
+        fromPreset(presets.iosX64, 'ios')
     }
     sourceSets {
         commonMain {
